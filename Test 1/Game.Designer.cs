@@ -1,6 +1,6 @@
 ﻿namespace Test_1
 {
-    partial class Idlers
+    partial class Game
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Idlers));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.Exit = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Stone = new System.Windows.Forms.Label();
@@ -39,7 +39,11 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.Wood = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Idlers = new System.Windows.Forms.Label();
+            this.StoneWorkers = new System.Windows.Forms.Label();
+            this.SWUp = new System.Windows.Forms.Label();
+            this.SWDown = new System.Windows.Forms.Label();
+            this.SWCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -60,7 +64,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 249);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 113);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(108, 94);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -70,7 +74,7 @@
             // Stone
             // 
             this.Stone.AutoSize = true;
-            this.Stone.Location = new System.Drawing.Point(42, 233);
+            this.Stone.Location = new System.Drawing.Point(42, 97);
             this.Stone.Name = "Stone";
             this.Stone.Size = new System.Drawing.Size(35, 13);
             this.Stone.TabIndex = 2;
@@ -117,7 +121,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(9, 125);
+            this.pictureBox4.Location = new System.Drawing.Point(9, 249);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(111, 94);
             this.pictureBox4.TabIndex = 7;
@@ -126,7 +130,7 @@
             // Wood
             // 
             this.Wood.AutoSize = true;
-            this.Wood.Location = new System.Drawing.Point(42, 97);
+            this.Wood.Location = new System.Drawing.Point(42, 233);
             this.Wood.Name = "Wood";
             this.Wood.Size = new System.Drawing.Size(36, 13);
             this.Wood.TabIndex = 8;
@@ -142,21 +146,63 @@
             this.pictureBox5.TabIndex = 9;
             this.pictureBox5.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(512, 324);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Idlers";
-            // 
             // Idlers
+            // 
+            this.Idlers.AutoSize = true;
+            this.Idlers.Location = new System.Drawing.Point(512, 324);
+            this.Idlers.Name = "Idlers";
+            this.Idlers.Size = new System.Drawing.Size(35, 13);
+            this.Idlers.TabIndex = 10;
+            this.Idlers.Text = "Idlers:";
+            // 
+            // StoneWorkers
+            // 
+            this.StoneWorkers.AutoSize = true;
+            this.StoneWorkers.Location = new System.Drawing.Point(491, 9);
+            this.StoneWorkers.Name = "StoneWorkers";
+            this.StoneWorkers.Size = new System.Drawing.Size(78, 13);
+            this.StoneWorkers.TabIndex = 11;
+            this.StoneWorkers.Text = "StoneWorkers:";
+            // 
+            // SWUp
+            // 
+            this.SWUp.AutoSize = true;
+            this.SWUp.Location = new System.Drawing.Point(485, 49);
+            this.SWUp.Name = "SWUp";
+            this.SWUp.Size = new System.Drawing.Size(19, 13);
+            this.SWUp.TabIndex = 12;
+            this.SWUp.Text = "+1";
+            this.SWUp.Click += new System.EventHandler(this.SWUp_Click);
+            // 
+            // SWDown
+            // 
+            this.SWDown.AutoSize = true;
+            this.SWDown.Location = new System.Drawing.Point(553, 49);
+            this.SWDown.Name = "SWDown";
+            this.SWDown.Size = new System.Drawing.Size(16, 13);
+            this.SWDown.TabIndex = 13;
+            this.SWDown.Text = "-1";
+            this.SWDown.Click += new System.EventHandler(this.SWDown_Click);
+            // 
+            // SWCount
+            // 
+            this.SWCount.AutoSize = true;
+            this.SWCount.Location = new System.Drawing.Point(566, 9);
+            this.SWCount.Name = "SWCount";
+            this.SWCount.Size = new System.Drawing.Size(35, 13);
+            this.SWCount.TabIndex = 14;
+            this.SWCount.Text = "label1";
+            // 
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 633);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.SWCount);
+            this.Controls.Add(this.SWDown);
+            this.Controls.Add(this.SWUp);
+            this.Controls.Add(this.StoneWorkers);
+            this.Controls.Add(this.Idlers);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.Wood);
             this.Controls.Add(this.pictureBox4);
@@ -167,7 +213,7 @@
             this.Controls.Add(this.Stone);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Exit);
-            this.Name = "Idlers";
+            this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
             this.Load += new System.EventHandler(this.Game_Load);
@@ -193,6 +239,10 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label Wood;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Idlers;
+        private System.Windows.Forms.Label StoneWorkers;
+        private System.Windows.Forms.Label SWUp;
+        private System.Windows.Forms.Label SWDown;
+        private System.Windows.Forms.Label SWCount;
     }
 }
