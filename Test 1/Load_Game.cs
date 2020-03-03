@@ -35,7 +35,7 @@ namespace Test_1
                 CivLoadName = fname;
                 New_Game.filename = "";
                 this.Close();
-                Idlers game = new Idlers();
+                Game game = new Game();
                 game.Show();
             }
         }

@@ -26,6 +26,7 @@ namespace Test_1
             Close();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
         private void StartGame_Click(object sender, EventArgs e)
         {
             seed = Seed.Text;
@@ -88,7 +89,7 @@ namespace Test_1
                     Conn.Close();
                     Load_Game.CivLoadName = "";
                     this.Close();
-                    Idlers game = new Idlers();
+                    Game game = new Game();
                     game.Show();
                 }
                 else
