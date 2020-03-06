@@ -15,6 +15,8 @@ namespace Test_1
     public partial class Game : Form
     {
         public string CurrentFile;
+        public static double RaidPower;
+        public static double VillagePower;
         public Game()
         {
             InitializeComponent();
@@ -42,6 +44,8 @@ namespace Test_1
                 Cmd.ExecuteNonQuery();
                 Cmd.CommandText = "INSERT INTO Workers VALUES ('0','0','0','0','0','10')";
                 Cmd.ExecuteNonQuery();
+                Cmd.CommandText = "CREATE TABLE Raids(RaidPower VARCHAR(20), PRIMARY KEY(RaidPower))";
+                Cmd.ExecuteNonQuery();
                 Conn.Close();
             }
             else if(New_Game.filename=="")
@@ -66,6 +70,7 @@ namespace Test_1
                 MessageBox.Show("Something has gone wrong. Returning to menu");
                 this.Close();
             }
+            RaidTimer.Stop();
 
         }
         private void Exit_Click(object sender, EventArgs e)
@@ -153,7 +158,7 @@ namespace Test_1
             }
             reader.Close();
             Conn.Close();
-
+            RaidTimer.Start();
         }
 
         private void stone_updater_Tick(object sender, EventArgs e)
@@ -167,14 +172,21 @@ namespace Test_1
                 Cmd.CommandText = "SELECT * FROM Map_resources ";
                 OleDbDataReader reader = Cmd.ExecuteReader();
                 reader.Read();
-                int MapValue = Convert.ToInt32(reader.GetValue(i));
                 reader.Close();
                 Cmd.CommandText = "SELECT * FROM Workers ";
                 reader = Cmd.ExecuteReader();
                 reader.Read();
                 int workers = Convert.ToInt32(reader.GetValue(i));
                 reader.Close();
-                int UserValue;
+                Cmd.CommandText = "SELECT * FROM Race_Effects ";
+                reader = Cmd.ExecuteReader();
+                reader.Read();
+                double ResourceRate = Convert.ToDouble(reader.GetValue(0));
+                double CombatPowerRate = Convert.ToDouble(reader.GetValue(1));
+                reader.Close();
+                double UserValue;
+                VillagePower = workers * 7.5 * CombatPowerRate;
+                double ResourceGather = workers * 10 * ResourceRate;
                 Cmd.CommandText = "SELECT * FROM Current_resources ";
                 reader = Cmd.ExecuteReader();
                 reader.Read();
@@ -183,13 +195,13 @@ namespace Test_1
                     case 0:
                  if (workers > 0)
                  {
-                    UserValue = Convert.ToInt32(reader.GetValue(i)) + workers * 10;
+                    UserValue = Convert.ToInt32(reader.GetValue(i)) + ResourceGather;
                     reader.Close();
                     Cmd.CommandText = "UPDATE Current_resources SET Stone=";
                     Cmd.CommandText += UserValue;
                     Cmd.ExecuteNonQuery();
                     Cmd.CommandText = "UPDATE Map_resources SET Stone= Stone";
-                    Cmd.CommandText += -workers * 10;
+                    Cmd.CommandText += -ResourceGather;
                     Cmd.ExecuteNonQuery();
                     Cmd.CommandText = "SELECT * FROM Map_resources ";
                     reader = Cmd.ExecuteReader();
@@ -210,7 +222,7 @@ namespace Test_1
                     case 1:
                         if (workers > 0)
                         {
-                            UserValue = Convert.ToInt32(reader.GetValue(i)) + workers * 10;
+                            UserValue = Convert.ToInt32(reader.GetValue(i)) + ResourceGather;
                             reader.Close();
                             Cmd.CommandText = "UPDATE Current_resources SET Wood=";
                             Cmd.CommandText += UserValue;
@@ -237,7 +249,7 @@ namespace Test_1
                     case 2:
                         if (workers > 0)
                         {
-                            UserValue = Convert.ToInt32(reader.GetValue(i)) + workers * 10;
+                            UserValue = Convert.ToInt32(reader.GetValue(i)) + ResourceGather;
                             reader.Close();
                             Cmd.CommandText = "UPDATE Current_resources SET Iron=";
                             Cmd.CommandText += UserValue;
@@ -264,7 +276,7 @@ namespace Test_1
                     case 3:
                         if (workers > 0)
                         {
-                            UserValue = Convert.ToInt32(reader.GetValue(i)) + workers * 10;
+                            UserValue = Convert.ToInt32(reader.GetValue(i)) + ResourceGather;
                             reader.Close();
                             Cmd.CommandText = "UPDATE Current_resources SET Gold=";
                             Cmd.CommandText += UserValue;
@@ -289,7 +301,7 @@ namespace Test_1
                         GoldCount.Text = Convert.ToString(UserValue);
                         break;
                     case 4:
-                        CP.Text = Convert.ToString(workers * 7.5);
+                        CP.Text = Convert.ToString(VillagePower);
                         break;
                 }
                 Conn.Close();
@@ -485,6 +497,39 @@ namespace Test_1
             }
             if (workers == 0)
                 MessageBox.Show("No more Soldiers");
+            Conn.Close();
+        }
+
+        private void RaidTimer_Tick(object sender, EventArgs e)
+        {
+            RaidTimer.Enabled = false;
+            OleDbConnection Conn = new OleDbConnection(CurrentFile);
+            OleDbCommand Cmd = new OleDbCommand();
+            Cmd.Connection = Conn;
+            Conn.Open();
+            Random Random = new Random();
+            if (VillagePower > 20)
+            {
+                RaidPower = Random.Next(Convert.ToInt32(VillagePower - 20), Convert.ToInt32(VillagePower + 10));
+            }
+            else
+            {
+                RaidPower = Random.Next(0, Convert.ToInt32(VillagePower + 10));
+            }
+            Cmd.CommandText = "UPDATE  Raids SET RaidPower=";
+            Cmd.CommandText += RaidPower;
+            Cmd.ExecuteNonQuery();
+            MessageBox.Show(this,"You are being Raided! Raid Power " + RaidPower);
+            BattleScreen battle = new BattleScreen();
+            if (VillagePower > 0)
+            {
+                battle.Show();
+            }
+            else
+            {
+                MessageBox.Show("The raiders destroyed everything due to a lack of defense. The village is gone");
+                this.Close();
+            }
             Conn.Close();
         }
     }
