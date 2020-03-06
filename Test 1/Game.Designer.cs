@@ -74,17 +74,27 @@
             this.SCount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.CP = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.RaidTimer = new System.Windows.Forms.Timer(this.components);
+            this.AddingWorkers = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // Exit
             // 
-            this.Exit.Location = new System.Drawing.Point(1008, 598);
+            this.Exit.Location = new System.Drawing.Point(6, 608);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(75, 23);
             this.Exit.TabIndex = 0;
@@ -232,7 +242,7 @@
             // Stone_count
             // 
             this.Stone_count.AutoSize = true;
-            this.Stone_count.Location = new System.Drawing.Point(9, 8);
+            this.Stone_count.Location = new System.Drawing.Point(949, 151);
             this.Stone_count.Name = "Stone_count";
             this.Stone_count.Size = new System.Drawing.Size(75, 13);
             this.Stone_count.TabIndex = 15;
@@ -241,7 +251,7 @@
             // StoneCount
             // 
             this.StoneCount.AutoSize = true;
-            this.StoneCount.Location = new System.Drawing.Point(91, 7);
+            this.StoneCount.Location = new System.Drawing.Point(1031, 150);
             this.StoneCount.Name = "StoneCount";
             this.StoneCount.Size = new System.Drawing.Size(0, 13);
             this.StoneCount.TabIndex = 16;
@@ -302,7 +312,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 25);
+            this.label1.Location = new System.Drawing.Point(949, 289);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 22;
@@ -311,7 +321,7 @@
             // WoodCount
             // 
             this.WoodCount.AutoSize = true;
-            this.WoodCount.Location = new System.Drawing.Point(92, 25);
+            this.WoodCount.Location = new System.Drawing.Point(1042, 289);
             this.WoodCount.Name = "WoodCount";
             this.WoodCount.Size = new System.Drawing.Size(0, 13);
             this.WoodCount.TabIndex = 23;
@@ -395,7 +405,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 48);
+            this.label2.Location = new System.Drawing.Point(949, 409);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 32;
@@ -404,7 +414,7 @@
             // IronCount
             // 
             this.IronCount.AutoSize = true;
-            this.IronCount.Location = new System.Drawing.Point(84, 48);
+            this.IronCount.Location = new System.Drawing.Point(1031, 409);
             this.IronCount.Name = "IronCount";
             this.IronCount.Size = new System.Drawing.Size(0, 13);
             this.IronCount.TabIndex = 33;
@@ -412,7 +422,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 65);
+            this.label3.Location = new System.Drawing.Point(949, 525);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 34;
@@ -421,7 +431,7 @@
             // GoldCount
             // 
             this.GoldCount.AutoSize = true;
-            this.GoldCount.Location = new System.Drawing.Point(85, 65);
+            this.GoldCount.Location = new System.Drawing.Point(1031, 525);
             this.GoldCount.Name = "GoldCount";
             this.GoldCount.Size = new System.Drawing.Size(0, 13);
             this.GoldCount.TabIndex = 35;
@@ -483,11 +493,61 @@
             this.CP.Size = new System.Drawing.Size(0, 25);
             this.CP.TabIndex = 44;
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(992, 305);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(91, 90);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 45;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(992, 167);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(91, 90);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 46;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(992, 425);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(91, 90);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 47;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(992, 541);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(91, 90);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 48;
+            this.pictureBox10.TabStop = false;
+            // 
+            // RaidTimer
+            // 
+            this.RaidTimer.Enabled = true;
+            this.RaidTimer.Interval = 1000;
+            this.RaidTimer.Tick += new System.EventHandler(this.RaidTimer_Tick);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 633);
+            this.Controls.Add(this.pictureBox10);
+            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.pictureBox8);
+            this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.SDown);
             this.Controls.Add(this.SUp);
             this.Controls.Add(this.CP);
@@ -540,6 +600,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,5 +655,11 @@
         private System.Windows.Forms.Label SCount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label CP;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.Timer RaidTimer;
+        private System.Windows.Forms.Timer AddingWorkers;
     }
 }
