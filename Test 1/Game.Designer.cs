@@ -80,6 +80,19 @@
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.RaidTimer = new System.Windows.Forms.Timer(this.components);
             this.AddingWorkers = new System.Windows.Forms.Timer(this.components);
+            this.Achievements = new System.Windows.Forms.Button();
+            this.Research = new System.Windows.Forms.Button();
+            this.GroupArchers = new System.Windows.Forms.GroupBox();
+            this.ACount = new System.Windows.Forms.Label();
+            this.ADown = new System.Windows.Forms.Label();
+            this.AUp = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.Scientists = new System.Windows.Forms.Label();
+            this.ScienceCount = new System.Windows.Forms.Label();
+            this.ScienceUp = new System.Windows.Forms.Label();
+            this.ScienceDown = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ResearchPointsCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -90,6 +103,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            this.GroupArchers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
             // 
             // Exit
@@ -180,10 +195,10 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(485, 340);
+            this.pictureBox5.Location = new System.Drawing.Point(496, 340);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(101, 87);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox5.Size = new System.Drawing.Size(117, 106);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 9;
             this.pictureBox5.TabStop = false;
             // 
@@ -199,7 +214,7 @@
             // StoneWorkers
             // 
             this.StoneWorkers.AutoSize = true;
-            this.StoneWorkers.Location = new System.Drawing.Point(332, 9);
+            this.StoneWorkers.Location = new System.Drawing.Point(12, 9);
             this.StoneWorkers.Name = "StoneWorkers";
             this.StoneWorkers.Size = new System.Drawing.Size(78, 13);
             this.StoneWorkers.TabIndex = 11;
@@ -208,7 +223,7 @@
             // SWUp
             // 
             this.SWUp.AutoSize = true;
-            this.SWUp.Location = new System.Drawing.Point(326, 49);
+            this.SWUp.Location = new System.Drawing.Point(6, 49);
             this.SWUp.Name = "SWUp";
             this.SWUp.Size = new System.Drawing.Size(19, 13);
             this.SWUp.TabIndex = 12;
@@ -218,7 +233,7 @@
             // SWDown
             // 
             this.SWDown.AutoSize = true;
-            this.SWDown.Location = new System.Drawing.Point(394, 49);
+            this.SWDown.Location = new System.Drawing.Point(74, 49);
             this.SWDown.Name = "SWDown";
             this.SWDown.Size = new System.Drawing.Size(16, 13);
             this.SWDown.TabIndex = 13;
@@ -228,7 +243,7 @@
             // SWCount
             // 
             this.SWCount.AutoSize = true;
-            this.SWCount.Location = new System.Drawing.Point(407, 9);
+            this.SWCount.Location = new System.Drawing.Point(87, 9);
             this.SWCount.Name = "SWCount";
             this.SWCount.Size = new System.Drawing.Size(35, 13);
             this.SWCount.TabIndex = 14;
@@ -237,7 +252,7 @@
             // workers_updater
             // 
             this.workers_updater.Enabled = true;
-            this.workers_updater.Tick += new System.EventHandler(this.timer1_Tick);
+            this.workers_updater.Tick += new System.EventHandler(this.Workers_updater_Tick);
             // 
             // Stone_count
             // 
@@ -260,7 +275,7 @@
             // 
             this.resource_updater.Enabled = true;
             this.resource_updater.Interval = 1000;
-            this.resource_updater.Tick += new System.EventHandler(this.stone_updater_Tick);
+            this.resource_updater.Tick += new System.EventHandler(this.Resource_updater_Tick);
             // 
             // Idler_count
             // 
@@ -274,7 +289,7 @@
             // WWCount
             // 
             this.WWCount.AutoSize = true;
-            this.WWCount.Location = new System.Drawing.Point(523, 9);
+            this.WWCount.Location = new System.Drawing.Point(203, 9);
             this.WWCount.Name = "WWCount";
             this.WWCount.Size = new System.Drawing.Size(35, 13);
             this.WWCount.TabIndex = 21;
@@ -283,7 +298,7 @@
             // WWDown
             // 
             this.WWDown.AutoSize = true;
-            this.WWDown.Location = new System.Drawing.Point(510, 49);
+            this.WWDown.Location = new System.Drawing.Point(191, 49);
             this.WWDown.Name = "WWDown";
             this.WWDown.Size = new System.Drawing.Size(16, 13);
             this.WWDown.TabIndex = 20;
@@ -293,7 +308,7 @@
             // WWUp
             // 
             this.WWUp.AutoSize = true;
-            this.WWUp.Location = new System.Drawing.Point(442, 49);
+            this.WWUp.Location = new System.Drawing.Point(122, 49);
             this.WWUp.Name = "WWUp";
             this.WWUp.Size = new System.Drawing.Size(19, 13);
             this.WWUp.TabIndex = 19;
@@ -303,7 +318,7 @@
             // Wood_Workers
             // 
             this.Wood_Workers.AutoSize = true;
-            this.Wood_Workers.Location = new System.Drawing.Point(448, 9);
+            this.Wood_Workers.Location = new System.Drawing.Point(128, 9);
             this.Wood_Workers.Name = "Wood_Workers";
             this.Wood_Workers.Size = new System.Drawing.Size(79, 13);
             this.Wood_Workers.TabIndex = 18;
@@ -329,7 +344,7 @@
             // IronWorkers
             // 
             this.IronWorkers.AutoSize = true;
-            this.IronWorkers.Location = new System.Drawing.Point(574, 8);
+            this.IronWorkers.Location = new System.Drawing.Point(254, 8);
             this.IronWorkers.Name = "IronWorkers";
             this.IronWorkers.Size = new System.Drawing.Size(68, 13);
             this.IronWorkers.TabIndex = 24;
@@ -338,7 +353,7 @@
             // IWUp
             // 
             this.IWUp.AutoSize = true;
-            this.IWUp.Location = new System.Drawing.Point(577, 48);
+            this.IWUp.Location = new System.Drawing.Point(257, 48);
             this.IWUp.Name = "IWUp";
             this.IWUp.Size = new System.Drawing.Size(19, 13);
             this.IWUp.TabIndex = 25;
@@ -348,7 +363,7 @@
             // IWDown
             // 
             this.IWDown.AutoSize = true;
-            this.IWDown.Location = new System.Drawing.Point(652, 48);
+            this.IWDown.Location = new System.Drawing.Point(332, 48);
             this.IWDown.Name = "IWDown";
             this.IWDown.Size = new System.Drawing.Size(16, 13);
             this.IWDown.TabIndex = 26;
@@ -358,7 +373,7 @@
             // IWCount
             // 
             this.IWCount.AutoSize = true;
-            this.IWCount.Location = new System.Drawing.Point(655, 8);
+            this.IWCount.Location = new System.Drawing.Point(335, 8);
             this.IWCount.Name = "IWCount";
             this.IWCount.Size = new System.Drawing.Size(35, 13);
             this.IWCount.TabIndex = 27;
@@ -367,7 +382,7 @@
             // GoldWorkers
             // 
             this.GoldWorkers.AutoSize = true;
-            this.GoldWorkers.Location = new System.Drawing.Point(712, 9);
+            this.GoldWorkers.Location = new System.Drawing.Point(392, 9);
             this.GoldWorkers.Name = "GoldWorkers";
             this.GoldWorkers.Size = new System.Drawing.Size(72, 13);
             this.GoldWorkers.TabIndex = 28;
@@ -376,7 +391,7 @@
             // GWUp
             // 
             this.GWUp.AutoSize = true;
-            this.GWUp.Location = new System.Drawing.Point(712, 49);
+            this.GWUp.Location = new System.Drawing.Point(392, 49);
             this.GWUp.Name = "GWUp";
             this.GWUp.Size = new System.Drawing.Size(19, 13);
             this.GWUp.TabIndex = 29;
@@ -386,7 +401,7 @@
             // GWCount
             // 
             this.GWCount.AutoSize = true;
-            this.GWCount.Location = new System.Drawing.Point(790, 9);
+            this.GWCount.Location = new System.Drawing.Point(470, 9);
             this.GWCount.Name = "GWCount";
             this.GWCount.Size = new System.Drawing.Size(35, 13);
             this.GWCount.TabIndex = 30;
@@ -395,7 +410,7 @@
             // GWDown
             // 
             this.GWDown.AutoSize = true;
-            this.GWDown.Location = new System.Drawing.Point(793, 49);
+            this.GWDown.Location = new System.Drawing.Point(473, 49);
             this.GWDown.Name = "GWDown";
             this.GWDown.Size = new System.Drawing.Size(16, 13);
             this.GWDown.TabIndex = 31;
@@ -536,14 +551,148 @@
             // RaidTimer
             // 
             this.RaidTimer.Enabled = true;
-            this.RaidTimer.Interval = 1000;
+            this.RaidTimer.Interval = 300000;
             this.RaidTimer.Tick += new System.EventHandler(this.RaidTimer_Tick);
+            // 
+            // Achievements
+            // 
+            this.Achievements.Location = new System.Drawing.Point(87, 608);
+            this.Achievements.Name = "Achievements";
+            this.Achievements.Size = new System.Drawing.Size(85, 23);
+            this.Achievements.TabIndex = 49;
+            this.Achievements.Text = "Achievements";
+            this.Achievements.UseVisualStyleBackColor = true;
+            this.Achievements.Click += new System.EventHandler(this.Achievements_Click);
+            // 
+            // Research
+            // 
+            this.Research.Location = new System.Drawing.Point(178, 608);
+            this.Research.Name = "Research";
+            this.Research.Size = new System.Drawing.Size(75, 23);
+            this.Research.TabIndex = 50;
+            this.Research.Text = "Research";
+            this.Research.UseVisualStyleBackColor = true;
+            this.Research.Click += new System.EventHandler(this.Research_Click);
+            // 
+            // GroupArchers
+            // 
+            this.GroupArchers.Controls.Add(this.ACount);
+            this.GroupArchers.Controls.Add(this.ADown);
+            this.GroupArchers.Controls.Add(this.AUp);
+            this.GroupArchers.Controls.Add(this.pictureBox11);
+            this.GroupArchers.Location = new System.Drawing.Point(719, 8);
+            this.GroupArchers.Name = "GroupArchers";
+            this.GroupArchers.Size = new System.Drawing.Size(208, 102);
+            this.GroupArchers.TabIndex = 51;
+            this.GroupArchers.TabStop = false;
+            // 
+            // ACount
+            // 
+            this.ACount.AutoSize = true;
+            this.ACount.Location = new System.Drawing.Point(114, 41);
+            this.ACount.Name = "ACount";
+            this.ACount.Size = new System.Drawing.Size(41, 13);
+            this.ACount.TabIndex = 3;
+            this.ACount.Text = "Acount";
+            // 
+            // ADown
+            // 
+            this.ADown.AutoSize = true;
+            this.ADown.Location = new System.Drawing.Point(111, 83);
+            this.ADown.Name = "ADown";
+            this.ADown.Size = new System.Drawing.Size(16, 13);
+            this.ADown.TabIndex = 2;
+            this.ADown.Text = "-1";
+            // 
+            // AUp
+            // 
+            this.AUp.AutoSize = true;
+            this.AUp.Location = new System.Drawing.Point(111, 5);
+            this.AUp.Name = "AUp";
+            this.AUp.Size = new System.Drawing.Size(19, 13);
+            this.AUp.TabIndex = 1;
+            this.AUp.Text = "+1";
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(0, 5);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(104, 97);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 0;
+            this.pictureBox11.TabStop = false;
+            // 
+            // Scientists
+            // 
+            this.Scientists.AutoSize = true;
+            this.Scientists.Location = new System.Drawing.Point(507, 8);
+            this.Scientists.Name = "Scientists";
+            this.Scientists.Size = new System.Drawing.Size(55, 13);
+            this.Scientists.TabIndex = 52;
+            this.Scientists.Text = "Scientists:";
+            // 
+            // ScienceCount
+            // 
+            this.ScienceCount.AutoSize = true;
+            this.ScienceCount.Location = new System.Drawing.Point(568, 9);
+            this.ScienceCount.Name = "ScienceCount";
+            this.ScienceCount.Size = new System.Drawing.Size(0, 13);
+            this.ScienceCount.TabIndex = 53;
+            // 
+            // ScienceUp
+            // 
+            this.ScienceUp.AutoSize = true;
+            this.ScienceUp.Location = new System.Drawing.Point(515, 48);
+            this.ScienceUp.Name = "ScienceUp";
+            this.ScienceUp.Size = new System.Drawing.Size(19, 13);
+            this.ScienceUp.TabIndex = 54;
+            this.ScienceUp.Text = "+1";
+            this.ScienceUp.Click += new System.EventHandler(this.ScienceUp_Click);
+            // 
+            // ScienceDown
+            // 
+            this.ScienceDown.AutoSize = true;
+            this.ScienceDown.Location = new System.Drawing.Point(568, 48);
+            this.ScienceDown.Name = "ScienceDown";
+            this.ScienceDown.Size = new System.Drawing.Size(16, 13);
+            this.ScienceDown.TabIndex = 55;
+            this.ScienceDown.Text = "-1";
+            this.ScienceDown.Click += new System.EventHandler(this.ScienceDown_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(367, 541);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(176, 25);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "Research Points:";
+            // 
+            // ResearchPointsCount
+            // 
+            this.ResearchPointsCount.AutoSize = true;
+            this.ResearchPointsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResearchPointsCount.Location = new System.Drawing.Point(549, 541);
+            this.ResearchPointsCount.Name = "ResearchPointsCount";
+            this.ResearchPointsCount.Size = new System.Drawing.Size(0, 25);
+            this.ResearchPointsCount.TabIndex = 57;
             // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 633);
+            this.Controls.Add(this.ResearchPointsCount);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.ScienceDown);
+            this.Controls.Add(this.ScienceUp);
+            this.Controls.Add(this.ScienceCount);
+            this.Controls.Add(this.Scientists);
+            this.Controls.Add(this.GroupArchers);
+            this.Controls.Add(this.Research);
+            this.Controls.Add(this.Achievements);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox8);
@@ -604,6 +753,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            this.GroupArchers.ResumeLayout(false);
+            this.GroupArchers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -661,5 +813,18 @@
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Timer RaidTimer;
         private System.Windows.Forms.Timer AddingWorkers;
+        private System.Windows.Forms.Button Achievements;
+        private System.Windows.Forms.Button Research;
+        private System.Windows.Forms.GroupBox GroupArchers;
+        private System.Windows.Forms.Label ACount;
+        private System.Windows.Forms.Label ADown;
+        private System.Windows.Forms.Label AUp;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.Label Scientists;
+        private System.Windows.Forms.Label ScienceCount;
+        private System.Windows.Forms.Label ScienceUp;
+        private System.Windows.Forms.Label ScienceDown;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label ResearchPointsCount;
     }
 }

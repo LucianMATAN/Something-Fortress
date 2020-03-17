@@ -21,7 +21,7 @@ namespace Test_1
             InitializeComponent();
         }
 
-        private void exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)
         { 
             Close();
         }
@@ -48,35 +48,42 @@ namespace Test_1
                     cat.Create(fname);
                     OleDbConnection Conn = new OleDbConnection(fname);
                     Conn.Open();
-                    OleDbCommand Cmd = new OleDbCommand();
-                    Cmd.Connection = Conn;
-                    Cmd.CommandText = "CREATE TABLE Current_Resources(Stone VARCHAR(20), Wood VARCHAR(20), Iron VARCHAR(20), Gold VARCHAR(20), Citizens VARCHAR(20), PRIMARY KEY(Citizens))";
+                    OleDbCommand Cmd = new OleDbCommand
+                    {
+                        Connection = Conn,
+                        CommandText = "CREATE TABLE Current_Resources(Stone VARCHAR(20), Wood VARCHAR(20), Iron VARCHAR(20), Gold VARCHAR(20),Research VARCHAR(20), Citizens VARCHAR(20), PRIMARY KEY(Citizens))"
+                    };
                     Cmd.ExecuteNonQuery();
-                    Cmd.CommandText = "INSERT INTO Current_Resources VALUES ( '500', '500', '500','100','10')";
+                    Cmd.CommandText = "INSERT INTO Current_Resources VALUES ( '500', '500', '500','100','0','10')";
                     Cmd.ExecuteNonQuery();
                     Cmd.CommandText = "CREATE TABLE Map_Resources(Stone VARCHAR(20), Wood VARCHAR(20), Iron VARCHAR(20), Gold VARCHAR(20))";
                     Cmd.ExecuteNonQuery();
-                    Cmd.CommandText = "CREATE TABLE Race_Effects(ResourceRate VARCHAR(20), CombatRate VARCHAR(20))";
+                    Cmd.CommandText = "CREATE TABLE Race_Effects(ResourceRate VARCHAR(20), CombatRate VARCHAR(20), ResearchRate VARCHAR(20), RaceName VARCHAR(20))";
                     Cmd.ExecuteNonQuery();
                     if(Humans.Checked)
                     {
-                        Cmd.CommandText = "INSERT INTO Race_Effects VALUES ( '1','1')";
+                        Cmd.CommandText = "INSERT INTO Race_Effects VALUES ( '1','1','1','Humans')";
                         Cmd.ExecuteNonQuery();
                     }
                     else if(Goblins.Checked)
                     {
-                        Cmd.CommandText = "INSERT INTO Race_Effects VALUES ( '1.5','0.5')";
+                        Cmd.CommandText = "INSERT INTO Race_Effects VALUES ( '1.5','0.5','0.75','Goblins')";
                         Cmd.ExecuteNonQuery();
                     }
                     else if(Orcs.Checked)
                     {
-                        Cmd.CommandText = "INSERT INTO Race_Effects VALUES ( '0.5','1.5')";
+                        Cmd.CommandText = "INSERT INTO Race_Effects VALUES ( '0.5','1.5','0.5','Orcs')";
+                        Cmd.ExecuteNonQuery();
+                    }
+                    else if(Elves.Checked)
+                    {
+                        Cmd.CommandText = "INSERT INTO Race_Effects VALUES ( '0.75','0.76','1.5','Elves')";
                         Cmd.ExecuteNonQuery();
                     }
                     else if (Custom.Checked)
                     {
                         string CustomRace = "INSERT INTO Race_Effects";
-                        CustomRace += " VALUES('" + ResourceRate.Text + "','" + CombatRate.Text;
+                        CustomRace += " VALUES('" + ResourceRate.Text + "','" + CombatRate.Text + "','" + ResearchRate.Text + "','" + RaceName.Text;
                         CustomRace += "')";
                         Cmd.CommandText = CustomRace;
                         Cmd.ExecuteNonQuery();

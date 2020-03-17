@@ -30,9 +30,11 @@ namespace Test_1
                 OleDbConnection Conn = new OleDbConnection(New_Game.filename);
                 CurrentFile = New_Game.filename;
                 Conn.Open();
-                OleDbCommand Cmd = new OleDbCommand();
-                Cmd.Connection = Conn;
-                Cmd.CommandText = "SELECT * FROM Map_Resources ";
+                OleDbCommand Cmd = new OleDbCommand
+                {
+                    Connection = Conn,
+                    CommandText = "SELECT * FROM Map_Resources "
+                };
                 OleDbDataReader reader = Cmd.ExecuteReader();
                 reader.Read();
                 Stone.Text = string.Format("{0:N2}", reader["Stone"]) + " " + "Stone";
@@ -40,11 +42,11 @@ namespace Test_1
                 Iron.Text = string.Format("{0:N2}", reader["Iron"]) + " " + "Iron";
                 Wood.Text = string.Format("{0:N2}", reader["Wood"]) + " " + "Wood";
                 reader.Close();
-                Cmd.CommandText = "CREATE TABLE Workers(StoneWorkers VARCHAR(20), WoodWorkers VARCHAR(20), IronWorkers VARCHAR(20), GoldWorkers VARCHAR(20),Soldiers VARCHAR(20), Idlers VARCHAR(20), PRIMARY KEY(Idlers))";
+                Cmd.CommandText = "CREATE TABLE Workers(StoneWorkers VARCHAR(20), WoodWorkers VARCHAR(20), IronWorkers VARCHAR(20), GoldWorkers VARCHAR(20),Soldiers VARCHAR(20), Archers VARCHAR(20), Scientists VARCHAR(20), Idlers VARCHAR(20), PRIMARY KEY(Idlers))";
                 Cmd.ExecuteNonQuery();
-                Cmd.CommandText = "INSERT INTO Workers VALUES ('0','0','0','0','0','10')";
+                Cmd.CommandText = "INSERT INTO Workers VALUES ('0','0','0','0','0','0','0','10')";
                 Cmd.ExecuteNonQuery();
-                Cmd.CommandText = "CREATE TABLE Raids(RaidPower VARCHAR(20), PRIMARY KEY(RaidPower))";
+                Cmd.CommandText = "CREATE TABLE Raids(RaidPower VARCHAR(20), RaidsWon VARCHAR(20), PRIMARY KEY(RaidPower))";
                 Cmd.ExecuteNonQuery();
                 Conn.Close();
             }
@@ -53,9 +55,11 @@ namespace Test_1
                 OleDbConnection Conn = new OleDbConnection(Load_Game.CivLoadName);
                 CurrentFile = Load_Game.CivLoadName;
                 Conn.Open();
-                OleDbCommand Cmd = new OleDbCommand();
-                Cmd.Connection = Conn;
-                Cmd.CommandText = "SELECT * FROM Map_Resources ";
+                OleDbCommand Cmd = new OleDbCommand
+                {
+                    Connection = Conn,
+                    CommandText = "SELECT * FROM Map_Resources "
+                };
                 OleDbDataReader reader = Cmd.ExecuteReader();
                 reader.Read();
                 Stone.Text = string.Format("{0:N2}", reader["Stone"]) + " " + "Stone";
@@ -70,6 +74,7 @@ namespace Test_1
                 MessageBox.Show("Something has gone wrong. Returning to menu");
                 this.Close();
             }
+            GroupArchers.Hide();
 
         }
         private void Exit_Click(object sender, EventArgs e)
@@ -80,8 +85,10 @@ namespace Test_1
         private void SWUp_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -104,8 +111,10 @@ namespace Test_1
         private void SWDown_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -125,11 +134,13 @@ namespace Test_1
             Conn.Close();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Workers_updater_Tick(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -155,18 +166,29 @@ namespace Test_1
             {
                 SCount.Text = string.Format("{0:N2}", reader["Soldiers"]);
             }
+            if (string.Format("{0:N2}", reader["Scientists"]) != "")
+            {
+                ScienceCount.Text = string.Format("{0:N2}", reader["Scientists"]);
+            }
+            if (string.Format("{0:N2}", reader["Archers"]) != "")
+            {
+                ACount.Text = string.Format("{0:N2}", reader["Archers"]);
+            }
+
             reader.Close();
             Conn.Close();
 
         }
 
-        private void stone_updater_Tick(object sender, EventArgs e)
+        private void Resource_updater_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 8; i++)
             {
                 OleDbConnection Conn = new OleDbConnection(CurrentFile);
-                OleDbCommand Cmd = new OleDbCommand();
-                Cmd.Connection = Conn;
+                OleDbCommand Cmd = new OleDbCommand
+                {
+                    Connection = Conn
+                };
                 Conn.Open();
                 Cmd.CommandText = "SELECT * FROM Map_resources ";
                 OleDbDataReader reader = Cmd.ExecuteReader();
@@ -182,6 +204,7 @@ namespace Test_1
                 reader.Read();
                 double ResourceRate = Convert.ToDouble(reader.GetValue(0));
                 double CombatPowerRate = Convert.ToDouble(reader.GetValue(1));
+                double ResearchRate = Convert.ToDouble(reader.GetValue(2));
                 reader.Close();
                 double UserValue;
                 VillagePower = workers * 7.5 * CombatPowerRate;
@@ -302,6 +325,25 @@ namespace Test_1
                     case 4:
                         CP.Text = Convert.ToString(VillagePower);
                         break;
+                    case 6:
+                        reader.Close();
+                        Cmd.CommandText = "SELECT * FROM Workers ";
+                        reader = Cmd.ExecuteReader();
+                        reader.Read();
+                        workers = Convert.ToInt32(reader.GetValue(6));
+                        reader.Close();
+                        Cmd.CommandText = "SELECT * FROM Current_resources ";
+                        reader = Cmd.ExecuteReader();
+                        reader.Read();
+                        double Science = workers * 10 * ResearchRate;
+                        UserValue = Convert.ToInt32(reader.GetValue(4)) + Science;
+                        reader.Close();
+                        Cmd.CommandText = "UPDATE Current_resources SET Research=";
+                        Cmd.CommandText += UserValue;
+                        Cmd.ExecuteNonQuery();
+                        ResearchPointsCount.Text = Convert.ToString(UserValue);
+                        break;
+
                 }
                 Conn.Close();
             }
@@ -310,8 +352,10 @@ namespace Test_1
         private void WWUp_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -334,8 +378,10 @@ namespace Test_1
         private void WWDown_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -358,8 +404,10 @@ namespace Test_1
         private void IWUp_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -382,8 +430,10 @@ namespace Test_1
         private void IWDown_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -406,8 +456,10 @@ namespace Test_1
         private void GWUp_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -430,8 +482,10 @@ namespace Test_1
         private void GWDown_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -454,8 +508,10 @@ namespace Test_1
         private void SUp_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -478,8 +534,10 @@ namespace Test_1
         private void SDown_Click(object sender, EventArgs e)
         {
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Cmd.CommandText = "SELECT * FROM Workers ";
             OleDbDataReader reader = Cmd.ExecuteReader();
@@ -503,8 +561,10 @@ namespace Test_1
         {
             RaidTimer.Enabled = false;
             OleDbConnection Conn = new OleDbConnection(CurrentFile);
-            OleDbCommand Cmd = new OleDbCommand();
-            Cmd.Connection = Conn;
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
             Conn.Open();
             Random Random = new Random();
             if (VillagePower > 20)
@@ -521,7 +581,82 @@ namespace Test_1
             MessageBox.Show(this,"You are being Raided! Raid Power" + RaidPower);
             BattleScreen battle = new BattleScreen();
             battle.Show();
+            if(VillagePower==0)
+            {
+                MessageBox.Show("Your Village has been destroyed");
+                this.Close();
+            }
+            if (RaidPower == 0)
+            {
+                MessageBox.Show("You have beaten the raiders... for now");
+                Cmd.CommandText = "UPDATE Raids SET RaidsWon= RaidsWon + 1";
+                Cmd.ExecuteNonQuery();
+            }
             Conn.Close();
+        }
+
+        private void ScienceUp_Click(object sender, EventArgs e)
+        {
+            OleDbConnection Conn = new OleDbConnection(CurrentFile);
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
+            Conn.Open();
+            Cmd.CommandText = "SELECT * FROM Workers ";
+            OleDbDataReader reader = Cmd.ExecuteReader();
+            reader.Read();
+            int idlers = Convert.ToInt32(reader["Idlers"]);
+            reader.Close();
+            while (idlers != 0)
+            {
+                Cmd.CommandText = "UPDATE Workers SET Scientists= Scientists + 1";
+                Cmd.ExecuteNonQuery();
+                Cmd.CommandText = "UPDATE Workers SET Idlers = Idlers + -1";
+                Cmd.ExecuteNonQuery();
+                break;
+            }
+            if (idlers == 0)
+                MessageBox.Show("No more idlers");
+            Conn.Close();
+        }
+
+        private void ScienceDown_Click(object sender, EventArgs e)
+        {
+            OleDbConnection Conn = new OleDbConnection(CurrentFile);
+            OleDbCommand Cmd = new OleDbCommand
+            {
+                Connection = Conn
+            };
+            Conn.Open();
+            Cmd.CommandText = "SELECT * FROM Workers ";
+            OleDbDataReader reader = Cmd.ExecuteReader();
+            reader.Read();
+            int workers = Convert.ToInt32(reader["Scientists"]);
+            reader.Close();
+            while (workers != 0)
+            {
+                Cmd.CommandText = "UPDATE Workers SET Scientists= Scientists + -1";
+                Cmd.ExecuteNonQuery();
+                Cmd.CommandText = "UPDATE Workers SET Idlers = Idlers + 1";
+                Cmd.ExecuteNonQuery();
+                break;
+            }
+            if (workers == 0)
+                MessageBox.Show("No more Scientists");
+            Conn.Close();
+        }
+
+        private void Research_Click(object sender, EventArgs e)
+        {
+            Research Research = new Research();
+            Research.Show();
+        }
+
+        private void Achievements_Click(object sender, EventArgs e)
+        {
+            Achievements Achievements = new Achievements();
+            Achievements.Show();
         }
     }
 }

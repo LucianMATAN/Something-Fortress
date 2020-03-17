@@ -39,5 +39,10 @@ namespace Test_1
                 game.Show();
             }
         }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

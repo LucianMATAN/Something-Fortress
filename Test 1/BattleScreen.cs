@@ -44,6 +44,18 @@ namespace Test_1
                     EnemyPower = EnemyPower - OwnPower;
                 }
             }
+            if(OwnPower == 0)
+            {
+                MessageBox.Show("You have lost.");
+                Game.VillagePower =0;
+                this.Close();
+            }
+            if(EnemyPower == 0)
+            {
+                MessageBox.Show("You have won.");
+                Game.RaidPower = 0;
+                this.Close();
+            }
         }
     }
 }

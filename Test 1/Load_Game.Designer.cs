@@ -42,6 +42,7 @@
             this.Exit.TabIndex = 0;
             this.Exit.Text = "Return to Menu";
             this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // label1
             // 
@@ -90,6 +91,6 @@
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox CivName;
-        private System.Windows.Forms.Button Load;
+        private new System.Windows.Forms.Button Load;
     }
 }
