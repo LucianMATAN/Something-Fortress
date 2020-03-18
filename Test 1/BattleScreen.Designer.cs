@@ -33,9 +33,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.YourCp = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.EnemyFirst = new System.Windows.Forms.RadioButton();
-            this.Defend = new System.Windows.Forms.RadioButton();
             this.Attack = new System.Windows.Forms.RadioButton();
+            this.Defend = new System.Windows.Forms.RadioButton();
+            this.Nothing = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.StrattegyButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +83,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.EnemyFirst);
+            this.groupBox1.Controls.Add(this.radioButton4);
+            this.groupBox1.Controls.Add(this.Nothing);
             this.groupBox1.Controls.Add(this.Defend);
             this.groupBox1.Controls.Add(this.Attack);
             this.groupBox1.Location = new System.Drawing.Point(588, 12);
@@ -91,21 +93,21 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
-            // EnemyFirst
+            // Attack
             // 
-            this.EnemyFirst.AutoSize = true;
-            this.EnemyFirst.Location = new System.Drawing.Point(6, 65);
-            this.EnemyFirst.Name = "EnemyFirst";
-            this.EnemyFirst.Size = new System.Drawing.Size(134, 17);
-            this.EnemyFirst.TabIndex = 2;
-            this.EnemyFirst.TabStop = true;
-            this.EnemyFirst.Text = "Leave troops to decide";
-            this.EnemyFirst.UseVisualStyleBackColor = true;
+            this.Attack.AutoSize = true;
+            this.Attack.Location = new System.Drawing.Point(7, 8);
+            this.Attack.Name = "Attack";
+            this.Attack.Size = new System.Drawing.Size(78, 17);
+            this.Attack.TabIndex = 0;
+            this.Attack.TabStop = true;
+            this.Attack.Text = "Attack First";
+            this.Attack.UseVisualStyleBackColor = true;
             // 
             // Defend
             // 
             this.Defend.AutoSize = true;
-            this.Defend.Location = new System.Drawing.Point(6, 42);
+            this.Defend.Location = new System.Drawing.Point(7, 32);
             this.Defend.Name = "Defend";
             this.Defend.Size = new System.Drawing.Size(60, 17);
             this.Defend.TabIndex = 1;
@@ -113,16 +115,27 @@
             this.Defend.Text = "Defend";
             this.Defend.UseVisualStyleBackColor = true;
             // 
-            // Attack
+            // Nothing
             // 
-            this.Attack.AutoSize = true;
-            this.Attack.Location = new System.Drawing.Point(6, 19);
-            this.Attack.Name = "Attack";
-            this.Attack.Size = new System.Drawing.Size(78, 17);
-            this.Attack.TabIndex = 0;
-            this.Attack.TabStop = true;
-            this.Attack.Text = "Attack First";
-            this.Attack.UseVisualStyleBackColor = true;
+            this.Nothing.AutoSize = true;
+            this.Nothing.Location = new System.Drawing.Point(7, 56);
+            this.Nothing.Name = "Nothing";
+            this.Nothing.Size = new System.Drawing.Size(134, 17);
+            this.Nothing.TabIndex = 2;
+            this.Nothing.TabStop = true;
+            this.Nothing.Text = "Leave troops to decide";
+            this.Nothing.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(7, 80);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(119, 17);
+            this.radioButton4.TabIndex = 3;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Attempt to run away";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // StrattegyButton
             // 
@@ -164,7 +177,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label YourCp;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton EnemyFirst;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton Nothing;
         private System.Windows.Forms.RadioButton Defend;
         private System.Windows.Forms.RadioButton Attack;
         private System.Windows.Forms.Button StrattegyButton;

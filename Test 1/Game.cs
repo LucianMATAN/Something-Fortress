@@ -70,7 +70,6 @@ namespace Test_1
                 MessageBox.Show("Something has gone wrong. Returning to menu");
                 this.Close();
             }
-            RaidTimer.Stop();
 
         }
         private void Exit_Click(object sender, EventArgs e)
@@ -158,7 +157,7 @@ namespace Test_1
             }
             reader.Close();
             Conn.Close();
-            RaidTimer.Start();
+
         }
 
         private void stone_updater_Tick(object sender, EventArgs e)
@@ -519,17 +518,9 @@ namespace Test_1
             Cmd.CommandText = "UPDATE  Raids SET RaidPower=";
             Cmd.CommandText += RaidPower;
             Cmd.ExecuteNonQuery();
-            MessageBox.Show(this,"You are being Raided! Raid Power " + RaidPower);
+            MessageBox.Show(this,"You are being Raided! Raid Power" + RaidPower);
             BattleScreen battle = new BattleScreen();
-            if (VillagePower > 0)
-            {
-                battle.Show();
-            }
-            else
-            {
-                MessageBox.Show("The raiders destroyed everything due to a lack of defense. The village is gone");
-                this.Close();
-            }
+            battle.Show();
             Conn.Close();
         }
     }

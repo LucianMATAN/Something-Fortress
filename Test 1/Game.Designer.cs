@@ -536,7 +536,7 @@
             // RaidTimer
             // 
             this.RaidTimer.Enabled = true;
-            this.RaidTimer.Interval = 300000;
+            this.RaidTimer.Interval = 1000;
             this.RaidTimer.Tick += new System.EventHandler(this.RaidTimer_Tick);
             // 
             // Game

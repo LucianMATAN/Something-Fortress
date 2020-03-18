@@ -38,24 +38,12 @@ namespace Test_1
                     OwnPower = OwnPower - EnemyPower * 0.5;
                     EnemyPower = EnemyPower - OwnPower;
                 }
-                else if(EnemyFirst.Checked)
+                else if(Nothing.Checked)
                 {
                     OwnPower = OwnPower - EnemyPower;
                     EnemyPower = EnemyPower - OwnPower;
                 }
-                else
-                {
-                    MessageBox.Show("Please pick a strategy");
-                }
-
             }
-            if(EnemyPower==0)
-            {
-                MessageBox.Show("Congratulations, you've won!");
-                Game.RaidPower = 0;
-                this.Close();
-            }
-
         }
     }
 }
